@@ -11,6 +11,10 @@
   /* border: 2px solid crimson; */
 }
 
+.card.completed {
+  /* opacity: 0.4; */
+}
+
 .todoButtonContainer {
   display: flex;
   justify-content: center;
@@ -56,6 +60,18 @@
   gap: 5px;
 }
 
+.completed .todoContent {
+  opacity: 0.5;
+}
+
+.completed .todoContent::before {
+  content: ' ';
+  border-bottom: 2px solid black;
+  position: relative;
+  top: 19px;
+  /* opacity: 0.2; */
+}
+
 .todoTitle {
   font-size: 16px;
 }
@@ -88,14 +104,26 @@
 }
 
 .bottomContent {
-  display: flex;
+  /* display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-between; */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   font-size: 12px;
   color: #888;
 }
 
 .todoDetails {
   color: inherit;
+}
+
+.detailsDate {
+  grid-column: 1;
+  justify-self: start;
+}
+
+.detailsProject {
+  grid-column: 2;
+  justify-self: end;
 }
