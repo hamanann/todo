@@ -35,6 +35,10 @@ export default function TodoCard({ todo, showProject, showDate }) {
           </div>
         </div>
 
+        {todo.description && (
+          <div className={styles.description}>{todo.description}</div>
+        )}
+
         <div className={styles.bottomContent}>
           {showDate && (
             <div className={`${styles.todoDetails} ${styles.detailsDate}`}>

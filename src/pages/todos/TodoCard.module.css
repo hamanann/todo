@@ -22,9 +22,6 @@
 }
 
 .todoButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin: 0;
   padding: 0;
   border-radius: 50%;
@@ -34,6 +31,10 @@
   font-weight: bold;
   font-size: 16px;
   color: #222;
+}
+
+.todoButton:hover {
+  cursor: pointer;
 }
 
 .todoButton.priority1 {
@@ -54,6 +55,7 @@
 }
 
 .todoContent {
+  position: relative;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -62,18 +64,26 @@
 
 .completed .todoContent {
   opacity: 0.5;
+  pointer-events: none;
 }
 
-.completed .todoContent::before {
-  content: ' ';
+/* .completed .todoContent::before {
+  content: '';
+  width: 100%;
   border-bottom: 2px solid black;
-  position: relative;
-  top: 19px;
-  /* opacity: 0.2; */
-}
+  position: absolute;
+  top: 32px;
+  left: 0;
+  opacity: 0.2;
+} */
 
 .todoTitle {
-  font-size: 16px;
+  font-size: 17px;
+}
+
+.completed .todoTitle,
+.completed .description {
+  text-decoration: line-through;
 }
 
 .topContent {
@@ -101,6 +111,11 @@
 .icon:hover {
   transform: scale(1.2);
   background-color: #e8e8e8;
+  cursor: pointer;
+}
+
+.description {
+  font-size: 13px;
 }
 
 .bottomContent {
