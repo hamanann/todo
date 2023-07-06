@@ -6,6 +6,7 @@ import {
   MdOutlineExpandLess,
   MdOutlineExpandMore,
   MdOutlineMoreVert,
+  MdOutlineAdd,
 } from 'react-icons/md';
 
 import styles from './TodosSidebar.module.css';
@@ -13,6 +14,17 @@ import { useState } from 'react';
 
 export default function TodosSidebar() {
   const [projectsExpanded, setProjectsExpanded] = useState(true);
+
+  function handleExpandProjects(e) {
+    e.preventDefault();
+    setProjectsExpanded(prevExpanded => !prevExpanded);
+  }
+
+  function handleAddProject(e) {
+    e.preventDefault();
+    console.log('add project');
+    alert('Should open project creation form');
+  }
 
   return (
     <aside className={styles.sidebar}>
@@ -61,14 +73,30 @@ export default function TodosSidebar() {
             }
           >
             Projects
-            {projectsExpanded ? (
-              <MdOutlineExpandLess className={styles.icon} />
-            ) : (
-              <MdOutlineExpandMore className={styles.icon} />
-            )}
+            <div className={styles.projectOptions}>
+              <MdOutlineAdd
+                className={`${styles.icon} ${styles.addProjectIcon}`}
+                onClick={handleAddProject}
+              />
+              {projectsExpanded ? (
+                <MdOutlineExpandLess
+                  className={`${styles.icon} ${styles.expandProjectsIcon}`}
+                  onClick={handleExpandProjects}
+                />
+              ) : (
+                <MdOutlineExpandMore
+                  className={`${styles.icon} ${styles.expandProjectsIcon}`}
+                  onClick={handleExpandProjects}
+                />
+              )}
+            </div>
           </NavLink>
-          <ProjectLink title='Proj1' />
-          <ProjectLink title='Proj2' />
+          {projectsExpanded && (
+            <>
+              <ProjectLink title='Proj1' />
+              <ProjectLink title='Proj2' />
+            </>
+          )}
         </div>
       </nav>
     </aside>
