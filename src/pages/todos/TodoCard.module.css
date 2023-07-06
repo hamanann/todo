@@ -1,0 +1,101 @@
+.card {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  border-bottom: 1px solid #ccc;
+  /* box-shadow: crimson; */
+  /* border-radius: 5px; */
+
+  padding: 10px;
+  /* background-color: rgba(220, 20, 60, 0.05); */
+  /* border: 2px solid crimson; */
+}
+
+.todoButtonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.todoButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  border-style: solid;
+  font-weight: bold;
+  font-size: 16px;
+  color: #222;
+}
+
+.todoButton.priority1 {
+  background-color: rgba(220, 20, 60, 0.2);
+  border-color: rgb(220, 20, 60);
+}
+.todoButton.priority2 {
+  background-color: rgba(255, 165, 0, 0.2);
+  border-color: rgb(255, 165, 0);
+}
+.todoButton.priority3 {
+  background-color: rgba(122, 204, 122, 0.2);
+  border-color: rgb(130, 197, 130);
+}
+.todoButton.priority4 {
+  background-color: rgb(100, 149, 237, 0.2);
+  border-color: cornflowerblue;
+}
+
+.todoContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.todoTitle {
+  font-size: 16px;
+}
+
+.topContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.options {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.icon {
+  color: #444;
+  font-size: 24px;
+  border-radius: 50%;
+
+  padding: 2px;
+  transition: transform 0.1s ease-in-out;
+}
+
+.icon:hover {
+  transform: scale(1.2);
+  background-color: #e8e8e8;
+}
+
+.bottomContent {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #888;
+}
+
+.todoDetails {
+  color: inherit;
+}
