@@ -19,7 +19,7 @@ export default function TodosLayout() {
         <nav className={styles.navTodos}>
           <div className={`${styles.categories}`}>
             <NavLink
-              to='projects/general'
+              to='general'
               className={({ isActive }) =>
                 [isActive ? styles.active : '', styles.sidebarLink].join(' ')
               }
@@ -72,7 +72,9 @@ export default function TodosLayout() {
           </div>
         </nav>
       </aside>
-      <Outlet />
+      <section>
+        <Outlet />
+      </section>
     </div>
   );
 }
