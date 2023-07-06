@@ -1,4 +1,4 @@
-import { NavLink, Outlet, useParams } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import styles from './TodosLayout.module.css';
 
 import TodosSidebar from './TodosSidebar';
