@@ -21,11 +21,13 @@
 }
 
 .header {
-  margin-bottom: 20px;
+  padding-bottom: 15px;
+
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   font-size: 22px;
+  border-bottom: 2px groove #ccc9;
 }
 
 .options {
@@ -39,8 +41,8 @@
   margin: 0;
   padding: 0;
 }
-
-.todos::-webkit-scrollbar {
+/* 
+ .todos::-webkit-scrollbar {
   width: 0.5vw;
 }
 
@@ -49,5 +51,19 @@
 }
 
 .todos::-webkit-scrollbar-track {
-  /* background-color: #ddd; */
+}  */
+
+.todos::-webkit-scrollbar {
+  width: 1.6vw;
+}
+
+.todos::-webkit-scrollbar-thumb {
+  border: 6px solid rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+  border-radius: 10px;
+  background-color: #aaa;
+}
+
+.todos::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0);
 }
