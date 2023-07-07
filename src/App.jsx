@@ -11,6 +11,9 @@ import TodosLayout from './pages/todos/TodosLayout';
 import TodayTodos, {
   loader as todayTodoLoader,
 } from './pages/todos/TodayTodos';
+import ProjectTodos, {
+  loader as projectTodosLoader,
+} from './pages/todos/ProjectTodos';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,7 +23,11 @@ const router = createBrowserRouter(
         <Route path='today' element={<TodayTodos />} loader={todayTodoLoader} />
         <Route path='upcoming' element={<h2>Upcoming</h2>} />
         <Route path='projects' element={<h2>all projects</h2>} />
-        <Route path='projects/:projectName' element={<h2>project</h2>} />
+        <Route
+          path='projects/:projectName'
+          element={<ProjectTodos />}
+          loader={projectTodosLoader}
+        />
       </Route>
       <Route path='habits' element={<h2>Habits page</h2>} />
       <Route path='tracker' element={<h2>Time tracker page</h2>} />
