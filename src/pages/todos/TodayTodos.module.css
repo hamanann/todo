@@ -1,0 +1,13 @@
+/* .container {
+  display: flex;
+  justify-content: center;
+}
+
+.todos {
+  flex: 1;
+  padding: 40px;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-content: center;
+} */

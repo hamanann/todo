@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  flex: 1;
+  padding: 40px;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-content: center;
+}
+
+.header {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 22px;
+}
+
+.headerIcon {
+}
+
+.title {
+  font-size: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+.options {
+}
+
+/* .todos {
+  flex: 1;
+  padding: 40px;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-content: center;
+} */

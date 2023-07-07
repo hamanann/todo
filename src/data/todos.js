@@ -1,4 +1,4 @@
-export const todos = [
+export const todosData = [
   {
     id: 0,
     title: 'make bed',
