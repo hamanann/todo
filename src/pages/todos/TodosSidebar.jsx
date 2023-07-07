@@ -31,7 +31,7 @@ export default function TodosSidebar() {
       <nav className={styles.navTodos}>
         <div className={`${styles.categories}`}>
           <NavLink
-            to='general'
+            to='projects/general'
             className={({ isActive }) =>
               [isActive ? styles.active : '', styles.sidebarLink].join(' ')
             }
@@ -93,8 +93,8 @@ export default function TodosSidebar() {
           </NavLink>
           {projectsExpanded && (
             <>
-              <ProjectLink title='Proj1' />
-              <ProjectLink title='Proj2' />
+              <ProjectLink title='Project 1' />
+              <ProjectLink title='Project 2' />
             </>
           )}
         </div>
