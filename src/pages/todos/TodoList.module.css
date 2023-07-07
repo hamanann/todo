@@ -54,7 +54,7 @@
 }  */
 
 .todos::-webkit-scrollbar {
-  width: 1.6vw;
+  width: 16px;
 }
 
 .todos::-webkit-scrollbar-thumb {
