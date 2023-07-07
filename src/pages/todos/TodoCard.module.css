@@ -3,22 +3,18 @@
   flex-direction: row;
   gap: 20px;
   border-bottom: 1px solid #ccc;
-  /* box-shadow: crimson; */
-  /* border-radius: 5px; */
-
   padding: 10px;
-  /* background-color: rgba(220, 20, 60, 0.05); */
-  /* border: 2px solid crimson; */
 }
 
 .card.completed {
-  /* opacity: 0.4; */
+  opacity: 0.5;
+  filter: grayscale(1);
 }
 
 .todoButtonContainer {
   display: flex;
   justify-content: center;
-  align-items: center;
+  padding-top: 7px;
 }
 
 .todoButton {
@@ -63,26 +59,14 @@
 }
 
 .completed .todoContent {
-  opacity: 0.5;
   pointer-events: none;
 }
 
-/* .completed .todoContent::before {
-  content: '';
-  width: 100%;
-  border-bottom: 2px solid black;
-  position: absolute;
-  top: 32px;
-  left: 0;
-  opacity: 0.2;
-} */
-
 .todoTitle {
-  font-size: 17px;
+  font-size: 15px;
 }
 
-.completed .todoTitle,
-.completed .description {
+.completed .todoTitle {
   text-decoration: line-through;
 }
 
@@ -119,10 +103,6 @@
 }
 
 .bottomContent {
-  /* display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: space-between; */
   display: grid;
   grid-template-columns: 1fr 1fr;
   font-size: 12px;
