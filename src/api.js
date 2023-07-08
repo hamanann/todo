@@ -9,7 +9,21 @@ export async function getTodosToday() {
     )
     .eq('due_date', getDateWithoutTime(new Date()));
 
-  console.log(res.data);
+  if (res.error) {
+    throw {
+      message: res.message,
+      statusText: res.statusText,
+      status: res.status,
+    };
+  }
+
+  if (res.data) {
+    return res.data;
+  }
+}
+
+export async function getTodosCustomProjects() {
+  const res = await supabase.from('project').select().eq('custom', true);
 
   if (res.error) {
     throw {
@@ -24,8 +38,8 @@ export async function getTodosToday() {
   }
 }
 
-export async function getTodosProjects() {
-  const res = await supabase.from('project').select();
+export async function getTodosDefaultProjects() {
+  const res = await supabase.from('project').select().eq('custom', false);
 
   if (res.error) {
     throw {
@@ -34,8 +48,9 @@ export async function getTodosProjects() {
       status: res.status,
     };
   }
+
   if (res.data) {
-    return data;
+    return res.data;
   }
 }
 

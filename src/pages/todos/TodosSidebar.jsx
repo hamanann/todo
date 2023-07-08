@@ -1,4 +1,10 @@
-import { NavLink, useParams } from 'react-router-dom';
+import {
+  Await,
+  NavLink,
+  useLoaderData,
+  useParams,
+  defer,
+} from 'react-router-dom';
 import {
   MdOutlineWatchLater,
   MdOutlineToday,
@@ -10,9 +16,17 @@ import {
 } from 'react-icons/md';
 
 import styles from './TodosSidebar.module.css';
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
+import { getTodosCustomProjects } from '../../api';
 
-export default function TodosSidebar() {
+export async function loader() {
+  const customProjectsPromise = getTodosCustomProjects();
+
+  return defer({ customProjectsPromise });
+}
+
+export default function TodosSidebar({ defaultLists, customProjects }) {
+  const { customProjectsPromise, defaultProjectsPromise } = useLoaderData();
   const [projectsExpanded, setProjectsExpanded] = useState(true);
 
   function handleExpandProjects(e) {
@@ -30,33 +44,17 @@ export default function TodosSidebar() {
     <aside className={styles.sidebar}>
       <nav className={styles.navTodos}>
         <div className={`${styles.categories}`}>
-          <NavLink
-            to='projects/general'
-            className={({ isActive }) =>
-              [isActive ? styles.active : '', styles.sidebarLink].join(' ')
-            }
-          >
+          <DefaultProjectLink title='General'>
             <MdOutlineInbox className={styles.icon} />
-            General
-          </NavLink>
-          <NavLink
-            to='today'
-            className={({ isActive }) =>
-              [isActive ? styles.active : '', styles.sidebarLink].join(' ')
-            }
-          >
+          </DefaultProjectLink>
+
+          <DefaultProjectLink title='Today'>
             <MdOutlineToday className={styles.icon} />
-            Today
-          </NavLink>
-          <NavLink
-            to='upcoming'
-            className={({ isActive }) =>
-              [isActive ? styles.active : '', styles.sidebarLink].join(' ')
-            }
-          >
+          </DefaultProjectLink>
+
+          <DefaultProjectLink title='Upcoming'>
             <MdOutlineWatchLater className={styles.icon} />
-            Upcoming
-          </NavLink>
+          </DefaultProjectLink>
         </div>
         <div className={styles.horizontalSeparator}></div>
         <div className={styles.categories}>
@@ -92,10 +90,20 @@ export default function TodosSidebar() {
             </div>
           </NavLink>
           {projectsExpanded && (
-            <>
-              <ProjectLink title='Project 1' />
-              <ProjectLink title='Project 2' />
-            </>
+            <Suspense fallback={<p>Loading projects...</p>}>
+              <Await resolve={customProjectsPromise}>
+                {projects => {
+                  return projects.map(project => {
+                    return (
+                      <CustomProjectLink
+                        key={project.id}
+                        title={project.title}
+                      />
+                    );
+                  });
+                }}
+              </Await>
+            </Suspense>
           )}
         </div>
       </nav>
@@ -103,7 +111,7 @@ export default function TodosSidebar() {
   );
 }
 
-function ProjectLink({ title }) {
+function CustomProjectLink({ title }) {
   const params = useParams();
   const className = `${params.id === title && styles.active} ${
     styles.sidebarLink
@@ -116,5 +124,19 @@ function ProjectLink({ title }) {
         <MdOutlineMoreVert className={styles.linkOptions} />
       </NavLink>
     </div>
+  );
+}
+
+function DefaultProjectLink({ title, children }) {
+  return (
+    <NavLink
+      to={title === 'General' ? 'projects/general' : title.toLowerCase()}
+      className={({ isActive }) =>
+        [isActive ? styles.active : '', styles.sidebarLink].join(' ')
+      }
+    >
+      {children}
+      {title}
+    </NavLink>
   );
 }
