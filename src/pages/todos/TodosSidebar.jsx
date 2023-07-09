@@ -18,6 +18,7 @@ import {
 import styles from './TodosSidebar.module.css';
 import { Suspense, useState } from 'react';
 import { getTodosCustomProjects } from '../../api';
+import TodosSidebarLoading from './TodosSidebarLoading';
 
 export async function loader() {
   const customProjectsPromise = getTodosCustomProjects();
@@ -90,7 +91,7 @@ export default function TodosSidebar({ defaultLists, customProjects }) {
             </div>
           </NavLink>
           {projectsExpanded && (
-            <Suspense fallback={<p>Loading projects...</p>}>
+            <Suspense fallback={<TodosSidebarLoading />}>
               <Await resolve={customProjectsPromise}>
                 {projects => {
                   return projects.map(project => {
