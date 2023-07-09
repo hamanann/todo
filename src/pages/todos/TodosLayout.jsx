@@ -8,8 +8,10 @@ export default function TodosLayout() {
     <div className={styles.container}>
       <TodosSidebar />
 
-      <section>
-        <Outlet />
+      <section className={styles.mainContainer}>
+        <div className={styles.mainContent}>
+          <Outlet />
+        </div>
       </section>
     </div>
   );

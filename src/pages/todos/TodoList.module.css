@@ -1,15 +1,6 @@
 .container {
   height: 100%;
   display: flex;
-  justify-content: center;
-  /* overflow: hidden; */
-}
-
-.content {
-  flex: 1;
-  max-width: 1000px;
-  padding: 40px;
-  display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
@@ -30,9 +21,6 @@
   border-bottom: 2px groove #ccc9;
 }
 
-.options {
-}
-
 .headerIcon {
 }
 
@@ -41,17 +29,6 @@
   margin: 0;
   padding: 0;
 }
-/* 
- .todos::-webkit-scrollbar {
-  width: 0.5vw;
-}
-
-.todos::-webkit-scrollbar-thumb {
-  background-color: #999;
-}
-
-.todos::-webkit-scrollbar-track {
-}  */
 
 .todos::-webkit-scrollbar {
   width: 16px;
