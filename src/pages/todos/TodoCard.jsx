@@ -11,6 +11,8 @@ import {
 export default function TodoCard({ todo, showProject, showDate }) {
   const [completed, setCompleted] = useState(todo.completed);
 
+  const dueDate = new Date(todo.due_date);
+
   return (
     <div className={`${styles.card} ${completed && styles.completed}`}>
       <div className={styles.todoButtonContainer}>
@@ -42,16 +44,16 @@ export default function TodoCard({ todo, showProject, showDate }) {
         <div className={styles.bottomContent}>
           {showDate && (
             <div className={`${styles.todoDetails} ${styles.detailsDate}`}>
-              Due: {todo.dueDate.getDate()}.{todo.dueDate.getMonth() + 1}.
-              {todo.dueDate.getFullYear()}
+              Due: {dueDate.getDate()}.{dueDate.getMonth() + 1}.
+              {dueDate.getFullYear()}
             </div>
           )}
           {showProject && (
             <Link
-              to={`../projects/${todo.project}`}
+              to={`../projects/${todo.project.id}`}
               className={`${styles.todoDetails} ${styles.detailsProject}`}
             >
-              Project: {todo.project}
+              Project: {todo.project.title}
             </Link>
           )}
         </div>
