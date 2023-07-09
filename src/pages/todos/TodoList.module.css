@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  color: #222;
 }
 
 .todos {
@@ -22,6 +23,17 @@
 }
 
 .headerIcon {
+  font-size: 24px;
+  border-radius: 50%;
+
+  padding: 2px;
+  transition: transform 0.1s ease-in-out;
+}
+
+.headerIcon:hover {
+  transform: scale(1.2);
+  background-color: #e8e8e8;
+  cursor: pointer;
 }
 
 .title {

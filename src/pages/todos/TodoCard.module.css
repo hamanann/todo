@@ -50,6 +50,21 @@
   border-color: cornflowerblue;
 }
 
+.checkmarkIcon {
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.2s ease-in;
+}
+
+.checkmarkIcon:hover {
+  opacity: 1;
+}
+
+.completed .checkmarkIcon {
+  opacity: 1;
+}
+
 .todoContent {
   position: relative;
   flex: 1;

@@ -9,12 +9,12 @@ import {
 } from 'react-icons/md';
 
 export default function TodoCard({ todo, showProject, showDate }) {
-  const [completed, setCompleted] = useState(todo.completed);
+  const [done, setDone] = useState(todo.done);
 
   const dueDate = new Date(todo.due_date);
 
   return (
-    <div className={`${styles.card} ${completed && styles.completed}`}>
+    <div className={`${styles.card} ${done && styles.completed}`}>
       <div className={styles.todoButtonContainer}>
         <button
           type='button'
@@ -22,9 +22,7 @@ export default function TodoCard({ todo, showProject, showDate }) {
             styles['priority' + todo.priority]
           }`}
         >
-          {todo.completed && (
-            <MdOutlineCheck className={styles.checkMarkIcon} />
-          )}
+          <MdOutlineCheck className={`${styles.checkmarkIcon}`} />
         </button>
       </div>
       <div className={styles.todoContent}>
