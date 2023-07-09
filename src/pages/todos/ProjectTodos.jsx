@@ -9,11 +9,14 @@ export async function loader({ request }) {
   const url = new URL(request.url);
   const pathname = decodeURI(url.pathname);
   let projectId = pathname.split('/').slice(-1)[0];
+  let projectPromise;
   if (projectId === 'general') {
-    let projectGeneral = await getDefaultProjectGeneral();
-    projectId = projectGeneral.id;
+    projectPromise = getDefaultProjectGeneral().then(project =>
+      getTodosProject(project.id)
+    );
+  } else {
+    projectPromise = getTodosProject(projectId);
   }
-  const projectPromise = getTodosProject(projectId);
 
   return defer({ projectPromise });
 }
