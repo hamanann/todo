@@ -4,6 +4,7 @@ import { getTodosToday } from '../../api';
 
 import styles from './TodayTodos.module.css';
 import TodoList from './TodoList';
+import TodosLoading from './TodosLoading';
 
 export async function loader() {
   return defer({ todosPromise: getTodosToday() });
@@ -16,7 +17,7 @@ export default function Todos() {
     <>
       {/* <div className={styles.container}>
        <div className={styles.todos}> */}
-      <Suspense fallback={<h3>Loading todos...</h3>}>
+      <Suspense fallback={<TodosLoading />}>
         <Await resolve={todosPromise}>
           {todos => {
             return <TodoList title='Today' todos={todos} showProject />;

@@ -2,8 +2,8 @@ import { Suspense } from 'react';
 import { Await, useLoaderData, defer, useLocation } from 'react-router-dom';
 
 import { getDefaultProjectGeneral, getTodosProject } from '../../api';
-import styles from './TodayTodos.module.css';
 import TodoList from './TodoList';
+import TodosLoading from './TodosLoading';
 
 export async function loader({ request }) {
   const url = new URL(request.url);
@@ -26,7 +26,7 @@ export default function ProjectTodos() {
 
   return (
     <>
-      <Suspense fallback={<h3>Loading project...</h3>}>
+      <Suspense fallback={<TodosLoading />}>
         <Await resolve={projectPromise}>
           {project => {
             return (
