@@ -57,3 +57,41 @@ export async function getTodosDefaultProjects() {
 export async function getTodos() {
   return supabase.from('todo').select();
 }
+
+export async function getTodosProject(projectId) {
+  const res = await supabase
+    .from('project')
+    .select(`*, todo (*)`)
+    .eq('id', projectId)
+    .single();
+
+  if (res.error) {
+    throw {
+      message: res.message,
+      statusText: res.statusText,
+      status: res.status,
+    };
+  }
+  if (res.data) {
+    return res.data;
+  }
+}
+
+export async function getDefaultProjectGeneral() {
+  const res = await supabase
+    .from('project')
+    .select()
+    .ilike('title', 'general')
+    .single();
+  if (res.error) {
+    throw {
+      message: res.message,
+      statusText: res.statusText,
+      status: res.status,
+    };
+  }
+
+  if (res.data) {
+    return res.data;
+  }
+}

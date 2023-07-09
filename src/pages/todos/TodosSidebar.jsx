@@ -26,7 +26,7 @@ export async function loader() {
 }
 
 export default function TodosSidebar({ defaultLists, customProjects }) {
-  const { customProjectsPromise, defaultProjectsPromise } = useLoaderData();
+  const { customProjectsPromise } = useLoaderData();
   const [projectsExpanded, setProjectsExpanded] = useState(true);
 
   function handleExpandProjects(e) {
@@ -95,10 +95,7 @@ export default function TodosSidebar({ defaultLists, customProjects }) {
                 {projects => {
                   return projects.map(project => {
                     return (
-                      <CustomProjectLink
-                        key={project.id}
-                        title={project.title}
-                      />
+                      <CustomProjectLink key={project.id} project={project} />
                     );
                   });
                 }}
@@ -111,16 +108,23 @@ export default function TodosSidebar({ defaultLists, customProjects }) {
   );
 }
 
-function CustomProjectLink({ title }) {
+function CustomProjectLink({ project }) {
   const params = useParams();
-  const className = `${params.id === title && styles.active} ${
+  const className = `${params.projectId === project.id && styles.active} ${
     styles.sidebarLink
   } ${styles.project}`;
 
   return (
     <div>
-      <NavLink to={`projects/${title}`} className={className}>
-        {title}
+      <NavLink
+        to={`projects/${project.id}`}
+        className={className}
+        state={{
+          projectId: project.id,
+          projectTitle: project.title,
+        }}
+      >
+        {project.title}
         <MdOutlineMoreVert className={styles.linkOptions} />
       </NavLink>
     </div>

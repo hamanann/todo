@@ -34,7 +34,7 @@ const router = createBrowserRouter(
         <Route path='upcoming' element={<h2>Upcoming</h2>} />
         <Route path='projects' element={<h2>all projects</h2>} />
         <Route
-          path='projects/:projectName'
+          path='projects/:projectId'
           element={<ProjectTodos />}
           loader={projectTodosLoader}
         />
