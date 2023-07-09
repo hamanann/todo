@@ -111,7 +111,7 @@ export default function TodosSidebar({ defaultLists, customProjects }) {
 
 function CustomProjectLink({ project }) {
   const params = useParams();
-  const className = `${params.projectId === project.id && styles.active} ${
+  const className = `${params.projectId === project.id ? styles.active : ''} ${
     styles.sidebarLink
   } ${styles.project}`;
 
