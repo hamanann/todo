@@ -6,7 +6,6 @@ import TodosSidebar from './TodosSidebar';
 export default function TodosLayout() {
   return (
     <>
-      <Navigate to='today' />
       <div className={styles.container}>
         <TodosSidebar />
 

@@ -30,7 +30,7 @@ const router = createBrowserRouter(
     <Route path='/' element={<MainLayout />}>
       <Route index element={<h2>Home Page</h2>} />
       <Route path='todos' element={<TodosLayout />} loader={todosLayoutLoader}>
-        <Route path='today' element={<TodayTodos />} loader={todayTodoLoader} />
+        <Route index element={<TodayTodos />} loader={todayTodoLoader} />
         <Route path='upcoming' element={<h2>Upcoming</h2>} />
         <Route path='projects' element={<h2>all projects</h2>} />
         <Route

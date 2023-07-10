@@ -45,15 +45,15 @@ export default function TodosSidebar({ defaultLists, customProjects }) {
     <aside className={styles.sidebar}>
       <nav className={styles.navTodos}>
         <div className={`${styles.categories}`}>
-          <DefaultProjectLink title='General'>
+          <DefaultProjectLink title='General' linkTo='projects/general'>
             <MdOutlineInbox className={styles.icon} />
           </DefaultProjectLink>
 
-          <DefaultProjectLink title='Today'>
+          <DefaultProjectLink title='Today' linkTo='.'>
             <MdOutlineToday className={styles.icon} />
           </DefaultProjectLink>
 
-          <DefaultProjectLink title='Upcoming'>
+          <DefaultProjectLink title='Upcoming' linkTo='upcoming'>
             <MdOutlineWatchLater className={styles.icon} />
           </DefaultProjectLink>
         </div>
@@ -119,7 +119,13 @@ function CustomProjectLink({ project }) {
     <div>
       <NavLink
         to={`projects/${project.id}`}
-        className={className}
+        className={({ isActive }) =>
+          [
+            isActive ? styles.active : '',
+            styles.sidebarLink,
+            styles.project,
+          ].join(' ')
+        }
         state={{
           projectId: project.id,
           projectTitle: project.title,
@@ -132,10 +138,11 @@ function CustomProjectLink({ project }) {
   );
 }
 
-function DefaultProjectLink({ title, children }) {
+function DefaultProjectLink({ title, linkTo, children }) {
   return (
     <NavLink
-      to={title === 'General' ? 'projects/general' : title.toLowerCase()}
+      to={linkTo}
+      end={linkTo === '.'}
       className={({ isActive }) =>
         [isActive ? styles.active : '', styles.sidebarLink].join(' ')
       }
