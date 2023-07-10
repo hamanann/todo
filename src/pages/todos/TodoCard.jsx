@@ -58,7 +58,7 @@ export default function TodoCard({ todo, showProject, showDate }) {
           )}
           {showProject && (
             <Link
-              to={`../projects/${todo.project.id}`}
+              to={`/todos/projects/${todo.project.id}`}
               className={`${styles.todoDetails} ${styles.detailsProject}`}
             >
               Project: {todo.project.title}
