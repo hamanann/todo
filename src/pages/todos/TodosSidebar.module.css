@@ -78,7 +78,7 @@
 }
 
 .sidebarLink.project {
-  gap: unset;
+  gap: 4px;
   justify-content: space-between;
 }
 
@@ -93,6 +93,8 @@
 }
 
 .linkOptions {
+  align-self: flex-start;
+  flex-shrink: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -103,6 +105,7 @@
   padding: 1px;
   border-radius: 50%;
   transition: transform 0.2s ease-in-out;
+  margin-top: 2px;
   margin-right: 2px;
 }
 
