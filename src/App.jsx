@@ -19,11 +19,7 @@ import {
   loader as todosLayoutLoader,
   loader,
 } from './pages/todos/TodosSidebar';
-
-// treba li loader ici u sidebar ili u todosLayout???
-// posto u rutamo samo postoji todosLayout, trebalo bi u todosLayout da ide taj loader
-// ono sto se moze uraditi je da se loadaju podaci u todosLayout,
-// a da se onda posalju default i custom projects kao props u sidebar component
+import NotFound from './pages/todos/NotFound';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -41,6 +37,7 @@ const router = createBrowserRouter(
       </Route>
       <Route path='habits' element={<h2>Habits page</h2>} />
       <Route path='tracker' element={<h2>Time tracker page</h2>} />
+      <Route path='*' element={<NotFound />} />
     </Route>
   )
 );
