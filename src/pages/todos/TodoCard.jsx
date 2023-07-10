@@ -7,11 +7,20 @@ import {
   MdOutlineDelete,
   MdOutlineMoreVert,
 } from 'react-icons/md';
+import { toggleTodo } from '../../api';
 
 export default function TodoCard({ todo, showProject, showDate }) {
   const [done, setDone] = useState(todo.done);
-
   const dueDate = new Date(todo.due_date);
+
+  const handleToggleTodo = async () => {
+    setDone(prevDone => !prevDone);
+    try {
+      await toggleTodo(todo.id, !done);
+    } catch (error) {
+      alert(error.message);
+    }
+  };
 
   return (
     <div className={`${styles.card} ${done && styles.completed}`}>
@@ -21,6 +30,7 @@ export default function TodoCard({ todo, showProject, showDate }) {
           className={`${styles.todoButton} ${
             styles['priority' + todo.priority]
           }`}
+          onClick={handleToggleTodo}
         >
           <MdOutlineCheck className={`${styles.checkmarkIcon}`} />
         </button>

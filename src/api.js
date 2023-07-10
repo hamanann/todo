@@ -95,3 +95,18 @@ export async function getDefaultProjectGeneral() {
     return res.data;
   }
 }
+
+export async function toggleTodo(id, done) {
+  const { error } = await supabase
+    .from('todo')
+    .update({ done: done })
+    .eq('id', id);
+
+  if (error) {
+    throw {
+      message: 'Could not toggle todo with given id',
+      statusText: res.statusText,
+      status: res.status,
+    };
+  }
+}
