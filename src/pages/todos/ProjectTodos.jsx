@@ -4,6 +4,7 @@ import { Await, useLoaderData, defer, useLocation } from 'react-router-dom';
 import { getDefaultProjectGeneral, getTodosProject } from '../../api';
 import TodoList from './TodoList';
 import TodosLoading from './TodosLoading';
+import ProjectIdNotFound from './ProjectIdNotFound';
 
 export async function loader({ request }) {
   const url = new URL(request.url);
@@ -18,16 +19,19 @@ export async function loader({ request }) {
     projectPromise = getTodosProject(projectId);
   }
 
-  return defer({ projectPromise });
+  return defer({ projectPromise, projectId });
 }
 
 export default function ProjectTodos() {
-  const { projectPromise } = useLoaderData();
+  const { projectPromise, projectId } = useLoaderData();
 
   return (
     <>
       <Suspense fallback={<TodosLoading />}>
-        <Await resolve={projectPromise}>
+        <Await
+          resolve={projectPromise}
+          errorElement={<ProjectIdNotFound projectId={projectId} />}
+        >
           {project => {
             return (
               <TodoList
