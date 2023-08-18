@@ -16,7 +16,7 @@ import {
 } from 'react-icons/md';
 
 import styles from './TodosSidebar.module.css';
-import { Suspense, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { getTodosCustomProjects } from '../../api';
 import TodosSidebarLoading from './TodosSidebarLoading';
 
@@ -29,6 +29,10 @@ export async function loader() {
 export default function TodosSidebar({ defaultLists, customProjects }) {
   const { customProjectsPromise } = useLoaderData();
   const [projectsExpanded, setProjectsExpanded] = useState(true);
+
+  useEffect(() => {
+    console.log('loader data changed');
+  }, [customProjectsPromise]);
 
   function handleExpandProjects(e) {
     e.preventDefault();
@@ -110,11 +114,6 @@ export default function TodosSidebar({ defaultLists, customProjects }) {
 }
 
 function CustomProjectLink({ project }) {
-  const params = useParams();
-  const className = `${params.projectId === project.id ? styles.active : ''} ${
-    styles.sidebarLink
-  } ${styles.project}`;
-
   return (
     <div>
       <NavLink
@@ -126,10 +125,6 @@ function CustomProjectLink({ project }) {
             styles.project,
           ].join(' ')
         }
-        state={{
-          projectId: project.id,
-          projectTitle: project.title,
-        }}
       >
         {project.title}
         <MdOutlineMoreVert className={styles.linkOptions} />

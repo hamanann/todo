@@ -23,6 +23,8 @@ export async function loader({ request }) {
 }
 
 export default function ProjectTodos() {
+  const data = useLocation();
+  console.log(data.state);
   const { projectPromise, projectId } = useLoaderData();
 
   return (

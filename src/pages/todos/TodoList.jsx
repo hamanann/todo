@@ -1,6 +1,7 @@
 import TodoCard from './TodoCard';
 import styles from './TodoList.module.css';
-import { HiOutlineAdjustmentsHorizontal } from 'react-icons/hi2';
+import { HiOutlineAdjustmentsHorizontal, HiOutlinePlus } from 'react-icons/hi2';
+// import { MdOutlineAddCircleOutline, MdOutlineAddCircle } from 'react-icons/md';
 
 export default function TodoList({ title, todos, showDate, showProject }) {
   return (
@@ -22,6 +23,11 @@ export default function TodoList({ title, todos, showDate, showProject }) {
             />
           );
         })}
+        <button className={styles.addContainer} type='button'>
+          <HiOutlinePlus className={styles.addIcon} />
+
+          <span className={styles.addText}>Add todo</span>
+        </button>
       </div>
     </div>
   );
